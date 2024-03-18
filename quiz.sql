@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 18 Mar 2024, 19:14
+-- Czas generowania: 18 Mar 2024, 19:23
 -- Wersja serwera: 10.4.14-MariaDB
 -- Wersja PHP: 7.4.9
 
@@ -30,7 +30,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `users` (
   `id` int(255) NOT NULL,
   `login` varchar(40) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `admin` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
