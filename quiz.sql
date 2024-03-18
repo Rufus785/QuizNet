@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 18 Mar 2024, 19:23
--- Wersja serwera: 10.4.14-MariaDB
--- Wersja PHP: 7.4.9
+-- Generation Time: Mar 18, 2024 at 07:49 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,52 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Baza danych: `quiz`
+-- Database: `quiz`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `users`
+-- Table structure for table `level`
+--
+
+CREATE TABLE `level` (
+  `id` int(11) NOT NULL,
+  `level` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `questions`
+--
+
+CREATE TABLE `questions` (
+  `id` int(11) NOT NULL,
+  `question` varchar(255) NOT NULL,
+  `answer_1` varchar(63) NOT NULL,
+  `answer_2` varchar(63) NOT NULL,
+  `answer_3` varchar(63) DEFAULT NULL,
+  `answer_4` varchar(63) DEFAULT NULL,
+  `subject_id` int(11) NOT NULL,
+  `level_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subjects`
+--
+
+CREATE TABLE `subjects` (
+  `id` int(11) NOT NULL,
+  `name` varchar(63) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -32,14 +71,34 @@ CREATE TABLE `users` (
   `login` varchar(40) NOT NULL,
   `password` varchar(255) NOT NULL,
   `admin` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Indeksy dla zrzutów tabel
+-- Indexes for dumped tables
 --
 
 --
--- Indeksy dla tabeli `users`
+-- Indexes for table `level`
+--
+ALTER TABLE `level`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `questions`
+--
+ALTER TABLE `questions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `subject_id` (`subject_id`),
+  ADD KEY `id` (`level_id`);
+
+--
+-- Indexes for table `subjects`
+--
+ALTER TABLE `subjects`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
@@ -49,10 +108,39 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT dla tabeli `users`
+-- AUTO_INCREMENT for table `level`
+--
+ALTER TABLE `level`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `questions`
+--
+ALTER TABLE `questions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `subjects`
+--
+ALTER TABLE `subjects`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `questions`
+--
+ALTER TABLE `questions`
+  ADD CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`),
+  ADD CONSTRAINT `questions_ibfk_2` FOREIGN KEY (`level_id`) REFERENCES `level` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
