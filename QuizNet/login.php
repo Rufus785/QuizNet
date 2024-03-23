@@ -48,8 +48,9 @@ if(!$_SESSION['logged']){
 
 ?>
 <!-- Div odpowiedzialny za widocznośc Loginu -->
+<div class="content">
 <div class="login">
-<img src="/img/QuizNet.png" alt="Logo">
+<img src="img/QuizNet.png" alt="Logo">
     <h1>Logowanie</h1>
     <p>Podaj login oraz hasło</p>
 	<form action="login.php" method="POST">
@@ -62,8 +63,9 @@ if(!$_SESSION['logged']){
     <!-- Funkcja podmieniająca wyświetlaną zawartość -->
     <p>Nie masz konta? <a href="#" onclick="showRegistration()">Zarejestruj się!</a></p> 
 </div>
-<div class="registration"> //Div odpowiedzialny za widocznośc rejestracji
-    <img src="/img/QuizNet.png" alt="Logo">
+<!-- //Div odpowiedzialny za widocznośc rejestracji -->
+<div class="registration"> 
+    <img src="img/QuizNet.png" alt="Logo">
 <h1>Rejestracja</h1>
     <p>Podaj login oraz hasło</p>
 	<form action="login.php" method="POST">
@@ -77,8 +79,9 @@ if(!$_SESSION['logged']){
     <!-- Funkcja podmieniająca wyświetlaną zawartość -->
     <p>Masz już konto? <a href="#" onclick="showLogin()">Zaloguj się!</a></p> 
 </div>
+<a href="admin-panel.php">Admin Panel</a>
 <script src="script.js"></script>
-
+</div>
 <?php
 
 $mysqli -> close();
