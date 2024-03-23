@@ -28,7 +28,7 @@ include("config.php");
 			$result = $mysqli -> query($sql);
 			$row = $result -> fetch_assoc();
 			if($row['admin'] == 1) {
-				echo '<p>Witaj '.$row['login'].'. Jesteś administratorem, brawo! <a href="logout.php">Wyloguj sie</a></p>';
+				echo '<p>Witaj '.$row['login'].'. <a href="admin-panel.php">Admin Panel</a> <a href="logout.php">Wyloguj sie</a></p>';
 			}else{
 				echo '<p>Witaj '.$row['login'].'. Zapraszamy do zabawy! <a href="logout.php">Wyloguj sie</a></p>';
 			}

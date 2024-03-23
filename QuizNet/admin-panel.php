@@ -6,11 +6,43 @@
         crossorigin="anonymous"></script> 
 <?php include 'navbar.php'; 
 include("config.php");
+
+if($_SESSION['logged']){
+	$sql = "SELECT * FROM users WHERE id = '{$_SESSION['user_id']}'";
+	$result = $mysqli -> query($sql);
+	$row = $result -> fetch_assoc();
+	if($row['admin'] == 0) die("Wypad");
+}else{
+	die("Wypad");
+}
+
 ?>
 <div class="admin-panel-content">
 <p>Jestes w admin panelu</p>
 <h1>Witaj ....... !</h1>
 <p>Wybierz co chcesz zrobic</p>
+
+	<?php
+	
+	if(isset($_POST['kategoria'])){
+		$sql = "SELECT name FROM subjects WHERE name = '{$_POST['kategoria']}'";
+		$result = $mysqli -> query($sql);
+		if($result -> num_rows == 0){
+			$sql = "INSERT INTO subjects (name) VALUES ('{$_POST['kategoria']}')";
+			
+			if ($mysqli -> query($sql)) {
+				echo '<p>Pomyślnie dodano.</p>';
+			}else{
+				echo '<p>Błąd dodania:</p>';
+				echo $mysqli -> error;
+			}
+		}else{
+			echo '<p>Jest już taka kategoria! :(</p>';
+		}
+	}
+	
+	?>
+
 <div class="panel-group">
 <div class="panel">
     <button class="category" onclick="showCategory()">Dodaj kategorię</button>
@@ -21,8 +53,10 @@ include("config.php");
 <div class="panel-content">
     <div class="category-div">
 <p>Dodaj kategorię pytań</p>
-<button>+</button>
-<textarea name="" id="" cols="30" rows="1"></textarea>
+<form action="admin-panel.php" method="POST">
+<button type="sumbit">+</button>
+<input name="kategoria" id="">
+</form>
     </div>
     <div class="question-div">
         <p>Wybierz kategorię</p>

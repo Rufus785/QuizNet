@@ -15,7 +15,7 @@ if(!$_SESSION['logged']){
 			$result = $mysqli -> query($sql);
 			if($result -> num_rows == 0){
 				$pass = codepass($_POST['reg_pass']);
-				$sql = "INSERT INTO `users` (`login`, `password`) VALUES ('{$_POST['reg_login']}', '".$pass."')";
+				$sql = "INSERT INTO users (login, password) VALUES ('{$_POST['reg_login']}', '".$pass."')";
 				
 				if ($mysqli -> query($sql)) {
 					echo '<p>Pomyślnie zarejestrowano! Możesz się zalogować.</p>';
@@ -33,13 +33,13 @@ if(!$_SESSION['logged']){
 	
 	if(isset($_POST['login'])){
 		$pass = codepass($_POST['password']);
-		$sql = "SELECT `id` FROM `users` WHERE `login` = '{$_POST['login']}' AND `password` = '".$pass."' LIMIT 1";
+		$sql = "SELECT id FROM users WHERE login = '{$_POST['login']}' AND password = '".$pass."' LIMIT 1";
 		$result = $mysqli -> query($sql);
 		if($result -> num_rows > 0){
 			$row = $result -> fetch_assoc();
 			$_SESSION['logged'] = true;
             $_SESSION['user_id'] = $row['id'];
-			echo '<p>Poprawnie zalogowano</p>';
+			header("Location: index.php");
 		}else{
 			echo '<p>Błędny login lub hasło!</p>';
 		}
@@ -79,7 +79,6 @@ if(!$_SESSION['logged']){
     <!-- Funkcja podmieniająca wyświetlaną zawartość -->
     <p>Masz już konto? <a href="#" onclick="showLogin()">Zaloguj się!</a></p> 
 </div>
-<a href="admin-panel.php">Admin Panel</a>
 <script src="script.js"></script>
 </div>
 <?php
