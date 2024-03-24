@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2024 at 09:52 PM
+-- Generation Time: Mar 24, 2024 at 08:17 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -29,21 +29,23 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `answers` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `subject_id` int(11) NOT NULL,
-  `level_id` int(11) NOT NULL,
-  `answers` varchar(8191) NOT NULL
+  `answer` int(1) NOT NULL,
+  `attempt_id` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `level`
+-- Table structure for table `attempts`
 --
 
-CREATE TABLE `level` (
+CREATE TABLE `attempts` (
   `id` int(11) NOT NULL,
-  `level` int(11) NOT NULL
+  `user_id` int(11) NOT NULL,
+  `subject_id` int(11) NOT NULL,
+  `level` int(1) NOT NULL,
+  `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -60,8 +62,7 @@ CREATE TABLE `questions` (
   `answer_3` varchar(63) DEFAULT NULL,
   `answer_4` varchar(63) DEFAULT NULL,
   `subject_id` int(11) NOT NULL,
-  `level_id` int(11) NOT NULL,
-  `right_answer` int(11) NOT NULL
+  `level` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -97,23 +98,23 @@ CREATE TABLE `users` (
 --
 ALTER TABLE `answers`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `subject_id` (`subject_id`),
-  ADD KEY `level_id` (`level_id`);
+  ADD KEY `attempt_id` (`attempt_id`),
+  ADD KEY `question_id` (`question_id`);
 
 --
--- Indexes for table `level`
+-- Indexes for table `attempts`
 --
-ALTER TABLE `level`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `attempts`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `subject_id` (`subject_id`);
 
 --
 -- Indexes for table `questions`
 --
 ALTER TABLE `questions`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `subject_id` (`subject_id`),
-  ADD KEY `id` (`level_id`);
+  ADD KEY `subject_id` (`subject_id`);
 
 --
 -- Indexes for table `subjects`
@@ -138,9 +139,9 @@ ALTER TABLE `answers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `level`
+-- AUTO_INCREMENT for table `attempts`
 --
-ALTER TABLE `level`
+ALTER TABLE `attempts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -169,16 +170,21 @@ ALTER TABLE `users`
 -- Constraints for table `answers`
 --
 ALTER TABLE `answers`
-  ADD CONSTRAINT `answers_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `answers_ibfk_2` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`),
-  ADD CONSTRAINT `answers_ibfk_3` FOREIGN KEY (`level_id`) REFERENCES `level` (`id`);
+  ADD CONSTRAINT `answers_ibfk_1` FOREIGN KEY (`attempt_id`) REFERENCES `attempts` (`id`),
+  ADD CONSTRAINT `answers_ibfk_2` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`);
+
+--
+-- Constraints for table `attempts`
+--
+ALTER TABLE `attempts`
+  ADD CONSTRAINT `attempts_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `attempts_ibfk_2` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`);
 
 --
 -- Constraints for table `questions`
 --
 ALTER TABLE `questions`
-  ADD CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`),
-  ADD CONSTRAINT `questions_ibfk_2` FOREIGN KEY (`level_id`) REFERENCES `level` (`id`);
+  ADD CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
