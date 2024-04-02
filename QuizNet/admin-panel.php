@@ -4,83 +4,126 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script> 
-<?php include 'navbar.php'; 
+<?php 
 include("config.php");
 
-if($_SESSION['logged']){
-	$sql = "SELECT * FROM users WHERE id = '{$_SESSION['user_id']}'";
-	$result = $mysqli -> query($sql);
-	$row = $result -> fetch_assoc();
-	if($row['admin'] == 0) die("Wypad");
-}else{
-	die("Wypad");
+if(isset($_POST['kategoria'])){
+    $nazwa_kategorii = $_POST['kategoria'];
+    $nazwa_kategorii = $mysqli->real_escape_string($nazwa_kategorii);
+    
+    $sql = "SELECT name FROM subjects WHERE name = '$nazwa_kategorii'";
+    $result = $mysqli -> query($sql);
+    if($result -> num_rows == 0){
+        $sql = "INSERT INTO subjects (name) VALUES ('$nazwa_kategorii')";
+        
+        if ($mysqli -> query($sql)) {
+            echo '<p>Pomyślnie dodano.</p>';
+        } else {
+            echo '<p>Błąd dodania:</p>';
+            echo $mysqli -> error;
+        }
+    } else {
+        echo '<p>Jest już taka kategoria! :(</p>';
+    }
 }
 
 ?>
+
 <div class="admin-panel-content">
-<p>Jestes w admin panelu</p>
-<h1>Witaj ....... !</h1>
-<p>Wybierz co chcesz zrobic</p>
+    <p>Jesteś w panelu administracyjnym</p>
+    <h1>Witaj ....... !</h1>
+    <p>Wybierz co chcesz zrobić</p>
 
-	<?php
-	
-	if(isset($_POST['kategoria'])){
-		$sql = "SELECT name FROM subjects WHERE name = '{$_POST['kategoria']}'";
-		$result = $mysqli -> query($sql);
-		if($result -> num_rows == 0){
-			$sql = "INSERT INTO subjects (name) VALUES ('{$_POST['kategoria']}')";
-			
-			if ($mysqli -> query($sql)) {
-				echo '<p>Pomyślnie dodano.</p>';
-			}else{
-				echo '<p>Błąd dodania:</p>';
-				echo $mysqli -> error;
-			}
-		}else{
-			echo '<p>Jest już taka kategoria! :(</p>';
-		}
-	}
-	
-	?>
+    <div class="panel-group">
+        <div class="panel">
+            <button class="category" onclick="showCategory()">Dodaj kategorię</button>
+            <button class="question" onclick="showQuestions()">Dodaj pytanie</button>
+        </div>
+        <div class="panel-content">
+            <div class="category-div">
+                <p>Dodaj kategorię pytań</p>
+                <form action="admin-panel.php" method="POST">
+                    <button type="submit">Zatwierdź</button>
+                    <input type="text" name="kategoria" id="">
+                </form>
+                <div id="category-div">
+                    <h1>Lista dodanych kategorii:</h1>
+                    <?php
+                    // Pobierz istniejące kategorie z bazy danych
+                    $sql = "SELECT name FROM subjects";
+                    $result = $mysqli->query($sql);
 
-<div class="panel-group">
-<div class="panel">
-    <button class="category" onclick="showCategory()">Dodaj kategorię</button>
-    <button class="question" onclick="showQuestions()">Dodaj pytanie</button>
-    <button class="permission" onclick="showPermissions()">Dodaj uprawnienia</button>
-    <button class="attemps" onclick="showAttemps()">Dodaj próby</button>
-</div>
-<div class="panel-content">
-    <div class="category-div">
-<p>Dodaj kategorię pytań</p>
-<form action="admin-panel.php" method="POST">
-<button type="sumbit">+</button>
-<input name="kategoria" id="">
-</form>
+                    // Sprawdź, czy zapytanie zwróciło wyniki
+                    if ($result->num_rows > 0) {
+                        // Jeśli są wyniki, wyświetl listę kategorii
+                        echo "<ul>";
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<li>" . $row["name"] . "</li>";
+                        }
+                        echo "</ul>";
+                    } else {
+                        echo "Brak istniejących kategorii.";
+                    }
+                    ?>
+                </div>
+            </div>
+            <div class="question-div">
+                <div class="questions">
+                <label for="category">Wybierz kategorię:</label>
+                <select id="category">
+                    <option value="m">Matematyka</option>
+                    <option value="a">Angielski</option>
+                    <option value="f">Fizyka</option>
+                </select> 
+                <br>
+                <br>
+                <label for="text">Dodaj pytanie</label>
+                <input type="text">
+                <p>Podaj poziom trudności:</p>
+                <div class="difficulty">
+                    <label><input type="radio" name="difficulty"> <p>Łatwy</p></label>
+                    <label><input type="radio" name="difficulty"> <p>Średni</p></label>
+                    <label><input type="radio" name="difficulty"> <p>Trudny</p></label>
+                </div>
+                </div>
+                <div class="answers">
+                <table>
+    <thead>
+    <table>
+    <thead>
+        <tr>
+            <th>Odpowiedzi</th>
+            <th>Odpowiedź prawidłowa</th>
+            <th>Odpowiedź prawdopodobna</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><input type="text" name="odpowiedz1"></td>
+            <td><input type="radio" name="prawidlowa" value="1"></td>
+            <td><input type="radio" name="prawdopodobna" value="1"></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="odpowiedz2"></td>
+            <td><input type="radio" name="prawidlowa" value="2"></td>
+            <td><input type="radio" name="prawdopodobna" value="2"></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="odpowiedz3"></td>
+            <td><input type="radio" name="prawidlowa" value="3"></td>
+            <td><input type="radio" name="prawdopodobna" value="3"></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="odpowiedz4"></td>
+            <td><input type="radio" name="prawidlowa" value="4"></td>
+            <td><input type="radio" name="prawdopodobna" value="4"></td>
+        </tr>
+    </tbody>
+</table>
+                </div>
+                <button class="submit">Zatwierdź</button>
+            </div>
+        </div>
     </div>
-    <div class="question-div">
-        <p>Wybierz kategorię</p>
-        <textarea name="" id="" cols="10" rows="1"></textarea>
-<p>Dodaj Pytanie </p>
-<textarea name="" id="" cols="10" rows="1"></textarea>
-<p>Podaj poziom trudności:</p>
-<div class="difficulty">
-    <input type="radio" name="difficulty"> <p>Łatwy</p>
-    <input type="radio" name="difficulty"> <p>Średni</p>
-    <input type="radio" name="difficulty"> <p>Trudny</p>
-</div>
-    </div>
-    <div class="permission-div">
-<p>Wybierz użytkownika</p>
-<p>Tutaj bedzie jakas lista userow</p>
-<p>Ale idk jak to zrobic</p>
-    </div>
-    <div class="attemps-div">
-    <p>Wybierz użytkownika i dodaj mu próby </p>
-<p>Tutaj bedzie jakas lista userow</p>
-<p>Ale idk jak to zrobic</p>
-    </div>
-</div>
-</div>
 </div>
 <script src="script.js"></script>

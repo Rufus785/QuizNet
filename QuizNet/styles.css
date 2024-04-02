@@ -77,3 +77,15 @@ border-radius: 25px;
 .category-div,.question-div,.permission-div,.attemps-div{
     display:none;
 }
+.difficulty input[type="radio"],
+.difficulty p {
+    display: inline-block;
+}
+.question-div{
+display: flex;
+flex-direction: row;
+    
+}
+th{
+    color: white;
+}
