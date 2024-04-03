@@ -1,0 +1,125 @@
+/* Globalne style */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9; /* Jasnoszary kolor tła strony */
+}
+
+/* Styl dla panelu admina */
+.admin-panel-content {
+    background-color: #343a40; /* Ciemnoszary kolor tła panelu */
+    height: auto;
+    min-height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Styl dla grupy paneli */
+.panel-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/* Styl dla pojedynczego panelu */
+.panel {
+    width: 300px;
+    margin: 10px; /* Odległość między panelami */
+}
+
+/* Styl dla zawartości panelu */
+.panel-content {
+    color: white;
+    margin-top: 20px; /* Odległość między górnym tekstem a przyciskami */
+    /* display: none; */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Styl dla przycisków kategorii i pytań */
+.category, .question {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px; /* Odległość między przyciskami */
+    background-color: #007bff; /* Niebieski kolor tła przycisków */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Efekt przejścia po najechaniu myszką */
+}
+
+/* Styl dla przycisków kategorii i pytań po najechaniu myszką */
+.category:hover, .question:hover {
+    background-color: #0056b3; /* Zmiana koloru tła po najechaniu */
+}
+
+/* Styl dla inputów tekstowych i selecta */
+input[type="text"], select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px; /* Odległość między inputami */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Styl dla tabeli odpowiedzi */
+.answers table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.answers th {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    color: white;
+}
+
+.answers td {
+    padding: 10px;
+    /* border-bottom: 1px solid #ddd; */
+    color: white;
+}
+
+.submit {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745; /* Zielony kolor tła przycisku */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Efekt przejścia po najechaniu myszką */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Cień */
+}
+
+/* Styl dla przycisku Zatwierdź po najechaniu myszką */
+.submit:hover {
+    background-color: #218838; /* Zmiana koloru tła po najechaniu */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Zwiększony cień po najechaniu */
+}
+/* Styl dla przycisku Zatwierdź */
+.submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745; /* Zielony kolor tła przycisku */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Efekt przejścia po najechaniu myszką */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Cień */
+}
+
+/* Styl dla przycisku Zatwierdź po najechaniu myszką */
+.submit-button:hover {
+    background-color: #218838; /* Zmiana koloru tła po najechaniu */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Zwiększony cień po najechaniu */
+}
+td

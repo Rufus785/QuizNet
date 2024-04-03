@@ -32,7 +32,6 @@
 }
 .content{
     display: flex;
-
     justify-content: center;
 }
 .confirm{
@@ -50,42 +49,4 @@ height: 450px;
 background-color: transparent;
 border: 1px solid black;
 border-radius: 25px;
-}
-.admin-panel-content{
-    background-color: rgb(58, 53, 78);
-    height: 100vh;
-    color: white;
-}
-.panel-group{
-    display: flex;
-    flex-direction: row;
-}
-.panel{
-    width:300px;
-    /* border: 1px solid black; */
-    height: auto;
-    display: flex;
-    flex-direction: column;
-}
-.panel-content{
-    color: white;
-}
-.difficulty{
-    display: flex;
-    flex-direction: column;
-}
-.category-div,.question-div,.permission-div,.attemps-div{
-    display:none;
-}
-.difficulty input[type="radio"],
-.difficulty p {
-    display: inline-block;
-}
-.question-div{
-display: flex;
-flex-direction: row;
-    
-}
-th{
-    color: white;
 }
