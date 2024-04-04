@@ -1,6 +1,6 @@
 <?php
 
-include("config.php");
+include("../config.php");
 
 if($_SESSION['logged']){
 	$sql = "SELECT * FROM users WHERE id = '{$_SESSION['user_id']}'";
@@ -11,11 +11,11 @@ if($_SESSION['logged']){
 	die("Wypad");
 }
 
-$sql = "DELETE FROM subjects WHERE id = '{$_GET['q']}'";
+$sql = "DELETE FROM subjects WHERE id = '{$_GET['id']}'";
 if ($mysqli -> query($sql)) {
 	echo '<p>Pomyślnie usunięto!';
 }else{
-	echo '<p>Błąd dodania:</p>';
+	echo '<p>Błąd usuniecia:</p>';
 	echo $mysqli -> error;
 }
 

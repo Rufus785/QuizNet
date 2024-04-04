@@ -4,6 +4,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+		<body onload="show_subjects();">
 <?php
 include("config.php");
 
@@ -153,92 +154,20 @@ if(isset($_POST['kategoria'])){
 	<h4>Strefa edycji</h4>
 	<hr><br>
 	
-	<script>
-	
-	function edit_subject(id) {
-		if (id == "") {
-		document.getElementById("subject_edit").innerHTML = "";
-		return;
-		}
-		const xhttp = new XMLHttpRequest();
-		xhttp.onload = function() {
-		document.getElementById("subject_edit").innerHTML = this.responseText;
-		}
-		xhttp.open("GET", "getsubject.php?q="+id);
-		xhttp.send();
-	}
-	
-	function delete_subject(id) {
-		var confirmation = window.confirm("Czy na pewno chcesz to zrobić?");
-		
-		if (confirmation) {
-			if (id == "") {
-			document.getElementById("subject_edit").innerHTML = "";
-			return;
-			}
-			const xhttp = new XMLHttpRequest();
-			xhttp.onload = function() {
-			document.getElementById("subject_edit").innerHTML = this.responseText;
-			}
-			xhttp.open("GET", "deletesubject.php?q="+id);
-			xhttp.send();
-		} else {
-			alert("To co zawracasz gitare :)");
-		}
-	}
-	
-	function confirmAction() {
-    var confirmation = window.confirm("Czy na pewno chcesz to zrobić?");
-    
-    if (confirmation) {
-    } else {
-		alert("To co zawracasz gitare :)");
-    }
-}
-	
-	</script>
-	
 	<div id="category-div">
 		<div id="subject_edit">
-		<?php
-		
-		if(isset($_POST['nowa-nazwa-kategorii'])){
-			$nazwa_kategorii = $mysqli->real_escape_string($_POST['nowa-nazwa-kategorii']);
-			
-			$sql = "SELECT name FROM subjects WHERE name = '$nazwa_kategorii'";
-			$result = $mysqli -> query($sql);
-			if($result -> num_rows == 0){
-				$sql = "UPDATE subjects SET name='$nazwa_kategorii' WHERE id = '{$_POST['nowa-nazwa-kategoria-id']}'";
-				
-				if ($mysqli -> query($sql)) {
-					echo '<p>Pomyślnie edytowano.</p>';
-				} else {
-					echo '<p>Błąd edytowania:</p>';
-					echo $mysqli -> error;
-				}
-			} else {
-				echo '<p>Jest już taka kategoria! :(</p>';
-			}
-		}
-		
-		?>
+		</div>
+		<div id="question_edit_info">
+		</div>	
+		<div id="question_edit">
 		</div>
 		<h4>Lista dodanych kategorii:</h4>
-		<?php
-		$sql = "SELECT id, name FROM subjects";
-		$result = $mysqli->query($sql);
-
-		if ($result->num_rows > 0) {
-			echo "<ul>";
-			while ($row = $result->fetch_assoc()) {
-				echo '<li>' . $row['name'] . ' | <button onclick="edit_subject('.$row['id'].')">Edytuj</button> | <button onclick="delete_subject('.$row['id'].')">Usun</button></li>';
-			}
-			echo "</ul>";
-		} else {
-			echo "Brak istniejących kategorii.";
-		}
-		?>
+		<div id="subject_list">
+		
+		</div>
 	</div>
 </div>
+</body>
 
 <script src="script.js"></script>
+<script src="js/admin-ajax.js"></script>
