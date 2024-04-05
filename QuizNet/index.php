@@ -108,6 +108,7 @@ if(!$_SESSION['logged']){
     <!-- Funkcja podmieniająca wyświetlaną zawartość -->
     <p>Masz już konto? <a href="#" onclick="showLogin()">Zaloguj się!</a></p> 
 </div>
+</div>
 
 		
 </body>
