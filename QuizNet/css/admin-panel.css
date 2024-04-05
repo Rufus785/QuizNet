@@ -122,4 +122,15 @@ input[type="text"], select {
     background-color: #218838; /* Zmiana koloru tła po najechaniu */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Zwiększony cień po najechaniu */
 }
-td
+#subject_list button{
+    background-color: #218838;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition:background-color 0.3s ease;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}#subject_list button:hover{
+    background-color: #3adb5d;
+}

@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="admin-panel.css">
+<link rel="stylesheet" href="./css/admin-panel.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -60,7 +60,7 @@ if(isset($_POST['kategoria'])){
             <div class="category-div">
                 <h4>Dodaj kategorię pytań</h4>
                 <form action="admin-panel.php" method="POST">
-                    <input type="text" name="kategoria" id="">
+                    <input type="text" name="kategoria" id="" required>
                     <button type="submit" class="submit-button">Zatwierdź</button>
                 </form>
             </div>
@@ -100,10 +100,10 @@ if(isset($_POST['kategoria'])){
                     </select>
                     <br><br>
                     <label for="text">Pytanie</label>
-                    <input type="text" name="pytanie">
+                    <input type="text" name="pytanie" required>
                     <p>Wybierz poziom trudności:</p>
                     <div class="difficulty">
-						<select name="poziom">
+						<select name="poziom"> <!-- Podoba mi sie to, nie wiem czemu o tym nie pomyslalem xD -->
 							<option value="0">Łatwy</option>
 							<option value="1">Średni</option>
 							<option value="2">Trudny</option>
@@ -123,19 +123,19 @@ if(isset($_POST['kategoria'])){
         </thead>
         <tbody>
             <tr>
-                <td><input type="text" name="odpowiedz1"></td>
+                <td><input type="text" name="odpowiedz1" required></td>
                 <td>Odpowiedz prawidlowa</td>
             </tr>
             <tr>
-                <td><input type="text" name="odpowiedz2"></td>
+                <td><input type="text" name="odpowiedz2" required></td>
                 <td>Odpowiedz prawdopodobna</td>
             </tr>
             <tr>
-                <td><input type="text" name="odpowiedz3"></td>
+                <td><input type="text" name="odpowiedz3" required></td>
                 <td>Odpowiedź błędna</td>
             </tr>
             <tr>
-                <td><input type="text" name="odpowiedz4"></td>
+                <td><input type="text" name="odpowiedz4" required></td>
                 <td>Odpowiedź błędna</td>
             </tr>
         </tbody>
@@ -169,5 +169,5 @@ if(isset($_POST['kategoria'])){
 </div>
 </body>
 
-<script src="script.js"></script>
+<script src="./js/script-admin-panel.js"></script>
 <script src="js/admin-ajax.js"></script>

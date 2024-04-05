@@ -11,7 +11,7 @@ include("config.php");
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>QuizNet</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./css/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
@@ -110,9 +110,51 @@ include("config.php");
 </div>
 </div>
 
-		
+<body>
+
+<header>
+    <h1>Witaj na stronie z quizami!</h1>
+</header>
+
+<section class="quiz-selection">
+    <div class="container">
+        <h2>Wybierz kategorię</h2>
+        <div class="categories">
+            <label class="category-option" data-category="Matematyka">
+                <input type="radio" name="category" value="Matematyka"> Matematyka
+            </label>
+            <label class="category-option" data-category="Polski">
+                <input type="radio" name="category" value="Polski"> Polski
+            </label>
+            <label class="category-option" data-category="Fizyka">
+                <input type="radio" name="category" value="Fizyka"> Fizyka
+            </label>
+            <label class="category-option" data-category="Angielski">
+                <input type="radio" name="category" value="Angielski"> Angielski
+            </label>
+        </div>
+        <h2>Wybierz trudność</h2>
+        <div class="difficulties">
+            <label class="difficulty-option">
+                <input type="radio" name="difficulty" value="Łatwy"> Łatwy
+            </label>
+            <label class="difficulty-option">
+                <input type="radio" name="difficulty" value="Średni"> Średni
+            </label>
+            <label class="difficulty-option">
+                <input type="radio" name="difficulty" value="Trudny"> Trudny
+            </label>
+        </div>
+        <button id="submit">Potwierdź</button>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2024 Strona z quizami.</p>
+	<p>Mariusz Osiński, Jakub Kruczek, Stanisław Michalewski</p>
+</footer>	
 </body>
-<script src="script.js"></script>
+<script src="./js/script-login.js"></script>
 </html>
 
 <?php
