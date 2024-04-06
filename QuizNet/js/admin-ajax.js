@@ -95,3 +95,15 @@ function change_question(id) {
 	xhttp.open("GET", "ajax/changequestion.php?id="+id+"&nowe_pytanie="+nowe_pytanie+"&nowy_poziom="+nowy_poziom+"&nowa_odpowiedz1="+nowa_odpowiedz1+"&nowa_odpowiedz2="+nowa_odpowiedz2+"&nowa_odpowiedz3="+nowa_odpowiedz3+"&nowa_odpowiedz4="+nowa_odpowiedz4);
 	xhttp.send();
 }
+
+function add_subject() {
+    var input = document.getElementById("nazwa-nowej-kategorii");
+    var nazwaNowejKategorii = input.value;
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {
+        document.getElementById("subject_add_info").innerHTML = this.responseText;
+        show_subjects();
+    }
+    xhttp.open("GET", "ajax/addsubject.php?value=" + nazwaNowejKategorii);
+    xhttp.send();
+}

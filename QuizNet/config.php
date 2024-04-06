@@ -18,4 +18,24 @@ if(!isset($_SESSION['logged'])) {
     $_SESSION['user_id'] = -1;
 }
 
+foreach ($_GET as $key => $value) {
+    if (is_array($value)) {
+        foreach ($value as $subkey => $subvalue) {
+            $_GET[$key][$subkey] = $mysqli->real_escape_string($subvalue);
+        }
+    } else {
+        $_GET[$key] = $mysqli->real_escape_string($value);
+    }
+}
+
+foreach ($_POST as $key => $value) {
+    if (is_array($value)) {
+        foreach ($value as $subkey => $subvalue) {
+            $_POST[$key][$subkey] = $mysqli->real_escape_string($subvalue);
+        }
+    } else {
+        $_POST[$key] = $mysqli->real_escape_string($value);
+    }
+}
+
 ?>

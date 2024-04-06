@@ -17,24 +17,6 @@ if($_SESSION['logged']){
 	die("Wypad");
 }
 
-if(isset($_POST['kategoria'])){
-    $nazwa_kategorii = $mysqli->real_escape_string($_POST['kategoria']);
-    
-    $sql = "SELECT name FROM subjects WHERE name = '$nazwa_kategorii'";
-    $result = $mysqli -> query($sql);
-    if($result -> num_rows == 0){
-        $sql = "INSERT INTO subjects (name) VALUES ('$nazwa_kategorii')";
-        
-        if ($mysqli -> query($sql)) {
-            echo '<p>Pomyślnie dodano.</p>';
-        } else {
-            echo '<p>Błąd dodania:</p>';
-            echo $mysqli -> error;
-        }
-    } else {
-        echo '<p>Jest już taka kategoria! :(</p>';
-    }
-}
 ?>
 
 <div class="admin-panel-content">
@@ -57,14 +39,6 @@ if(isset($_POST['kategoria'])){
 
     <div class="panel-group">
         <div class="panel-content">
-            <div class="category-div">
-                <h4>Dodaj kategorię pytań</h4>
-                <form action="admin-panel.php" method="POST">
-                    <input type="text" name="kategoria" id="" required>
-                    <button type="submit" class="submit-button">Zatwierdź</button>
-                </form>
-            </div>
-			<hr>
 			<?php
 			
 			if(isset($_POST['odpowiedz1'])){
@@ -164,6 +138,11 @@ if(isset($_POST['kategoria'])){
 		<h4>Lista dodanych kategorii:</h4>
 		<div id="subject_list">
 		
+		</div>
+		<div id="subject_add_info">
+		</div>
+		<div id="subject_add">
+		Dodaj kategorię: <input id="nazwa-nowej-kategorii"><button onclick="add_subject()">Dodaj</button>
 		</div>
 	</div>
 </div>
