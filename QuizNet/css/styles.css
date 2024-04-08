@@ -1,0 +1,164 @@
+.nav{
+    display: flex;
+    flex-direction: row;
+}
+.login-btn{
+    position: absolute;
+    background-color: rgb(133, 21, 21);
+    color: white;
+    min-width: 80px;
+    border: none;
+    border-radius: 10%;
+    right: 5%;
+}
+.logo{
+    max-height: 100px;
+}
+.login{
+    /* left: calc(50%-175px); */
+    text-align: center;
+    width: 350px;
+    height: 450px;
+    background-color: transparent;
+    border: 1px solid black;
+    border-radius: 25px;
+}
+.login img, .registration img{
+    max-height: 100px;
+}
+.login-label, .password-label,.password-confirm-label{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.content{
+    display: flex;
+    justify-content: center;
+}
+.confirm{
+    background-color: black;
+    color: white;
+    border: 1px solid red;
+    border-radius: 15px;
+    width: 130px;
+}
+.registration{
+    display: none;
+text-align: center;
+width: 350px;
+height: 450px;
+background-color: transparent;
+border: 1px solid black;
+border-radius: 25px;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+}
+
+header {
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.quiz-selection {
+    text-align: center;
+    padding: 50px 0;
+}
+
+h1, h2 {
+    margin-bottom: 20px;
+}
+
+.categories, .difficulties {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.category-option, .difficulty-option {
+    margin: 10px;
+    padding: 15px 30px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Dodatkowa animacja zmiany koloru */
+}
+
+.category-option:hover, .difficulty-option:hover {
+    background-color: #0056b3;
+}
+
+/* Ukrywanie standardowych radio buttonów */
+input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Stylizacja niestandardowych radio buttonów */
+input[type="radio"]:checked + .category-option,
+input[type="radio"]:checked + .difficulty-option {
+    background-color: #0056b3; /* Zmiana koloru tła przy zaznaczeniu */
+    color: #fff; /* Zmiana koloru tekstu przy zaznaczeniu */
+}
+#submit{
+    background-color: #218838;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition:background-color 0.3s ease;
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+}
+#submit:hover{
+    background-color: #3adb5d;
+}
+
+.category-option {
+    padding: 15px 30px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.category-option:hover {
+    background-color: #0056b3;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+}
+.active-category {
+    background-color: blue;
+    color: #fff;
+}
+.active-difficulty {
+    background-color: blue;
+    color: #fff;
+}
