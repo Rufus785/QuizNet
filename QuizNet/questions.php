@@ -58,8 +58,6 @@
     }
 ?>
 
-<!-- test -->
-
 <!-- <div class="content">
     <div class="quiz-container">
         <h1>Pytanie 1</h1>

@@ -46,8 +46,6 @@ if(!$_SESSION['logged']){
 	}
 }
 
-// test
-
 ?>
 <!-- Div odpowiedzialny za widocznośc Loginu -->
 <div class="content">
