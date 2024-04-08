@@ -11,44 +11,54 @@
 
 <?php
     if($_SESSION['logged']) {
-        $sql = "SELECT * FROM questions WHERE level_id = '{$_POST['difficulty']}' AND subject_id = '{$_POST['category']}'";
-        $result = $mysqli -> query($sql);
-        $row = $result -> fetch_all(MYSQLI_ASSOC);
+        $sql = "SELECT COUNT(*) AS row_count FROM questions WHERE level_id = '{$_POST['difficulty']}' AND subject_id = '{$_POST['category']}'";
+        $result = $mysqli->query($sql);
+        $row = $result->fetch_assoc();
 
-        // Tworzymy nowy ciąg z losowymi zapisami z bazy
-        $random_row = array();
-        while (count($random_row) < 10) {
-            $randomElement = $row[array_rand($row)];
-            
-            if (!in_array($randomElement, $random_row)) {
-                $random_row[] = $randomElement;
+        $expectedRowCount = 10;
+
+        if ($row['row_count'] == $expectedRowCount) {
+            $sql = "SELECT * FROM questions WHERE level_id = '{$_POST['difficulty']}' AND subject_id = '{$_POST['category']}'";
+            $result = $mysqli -> query($sql);
+            $row = $result -> fetch_all(MYSQLI_ASSOC);
+    
+            // Tworzymy nowy ciąg z losowymi zapisami z bazy
+            $random_row = array();
+            while (count($random_row) < 10) {
+                $randomElement = $row[array_rand($row)];
+                
+                if (!in_array($randomElement, $random_row)) {
+                    $random_row[] = $randomElement;
+                }
             }
-        }
-
-        shuffle($random_row);
-
-        for ($i = 0; $i < 10; $i++) {
-            echo '
-                <div class="content">
-                    <div class="quiz-container">
-                        <h1>Pytanie '.($i+1).'</h1>
-                        <p>'.$random_row[$i]['question'].'</p>
-                            <div class="options">
-                                ';
-            for ($j = 0; $j < 4; $j++) {
-                echo '      <label for="option'.($i*4+$j).'"><input type="radio" id="option'.($i*4+$j).'" name="answer'.($i+1).'" value="'.($j+1).'">'.$random_row[$i]['answer_'.($j+1).''].'</label><br>';
-            }
-            echo '
-                            </div>
-                            <button type="submit">Potwierdź odpowiedź</button>
-                        </form>
-                        <button class="hint-button">Podpowiedź</button>
+    
+            shuffle($random_row);
+    
+            for ($i = 0; $i < 10; $i++) {
+                echo '
+                    <div class="content">
+                        <div class="quiz-container">
+                            <h1>Pytanie '.($i+1).'</h1>
+                            <p>'.$random_row[$i]['question'].'</p>
+                                <div class="options">
+                                    ';
+                for ($j = 0; $j < 4; $j++) {
+                    echo '      <label for="option'.($i*4+$j).'"><input type="radio" id="option'.($i*4+$j).'" name="answer'.($i+1).'" value="'.($j+1).'">'.$random_row[$i]['answer_'.($j+1).''].'</label><br>';
+                }
+                echo '
+                                </div>
+                                <button type="submit">Potwierdź odpowiedź</button>
+                            </form>
+                            <button class="hint-button">Podpowiedź</button>
+                        </div>
                     </div>
-                </div>
-            ';
+                ';
+            }
         }
     }
 ?>
+
+<!-- test -->
 
 <!-- <div class="content">
     <div class="quiz-container">
