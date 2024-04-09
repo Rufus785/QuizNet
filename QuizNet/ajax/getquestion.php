@@ -54,7 +54,7 @@ Poziom trudności:
             </tr>
         </tbody>
     </table>
-<button onclick="change_question('.$row['id'].')">Zmień pytanie</button>
+<button onclick="change_question('.$row['id'].', '.$row['subject_id'].')">Zmień pytanie</button>
 ';
 
 echo '<br><br>';
