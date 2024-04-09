@@ -119,33 +119,36 @@ include("config.php");
 <section class="quiz-selection">
     <div class="container">
         <h2>Wybierz kategorię</h2>
-        <div class="categories">
-            <label class="category-option" data-category="Matematyka">
-                <input type="radio" name="category" value="Matematyka"> Matematyka
-            </label>
-            <label class="category-option" data-category="Polski">
-                <input type="radio" name="category" value="Polski"> Polski
-            </label>
-            <label class="category-option" data-category="Fizyka">
-                <input type="radio" name="category" value="Fizyka"> Fizyka
-            </label>
-            <label class="category-option" data-category="Angielski">
-                <input type="radio" name="category" value="Angielski"> Angielski
-            </label>
-        </div>
-        <h2>Wybierz trudność</h2>
-        <div class="difficulties">
-            <label class="difficulty-option">
-                <input type="radio" name="difficulty" value="Łatwy"> Łatwy
-            </label>
-            <label class="difficulty-option">
-                <input type="radio" name="difficulty" value="Średni"> Średni
-            </label>
-            <label class="difficulty-option">
-                <input type="radio" name="difficulty" value="Trudny"> Trudny
-            </label>
-        </div>
-        <button id="submit">Potwierdź</button>
+		<form id="choiceForm" action="questions.php" method="post">
+
+			<div class="categories">
+				<label class="category-option" data-category="Matematyka">
+					<input type="radio" name="category" value="1"> Matematyka
+				</label>
+				<label class="category-option" data-category="Polski">
+					<input type="radio" name="category" value="2"> Polski
+				</label>
+				<label class="category-option" data-category="Fizyka">
+					<input type="radio" name="category" value="3"> Fizyka
+				</label>
+				<label class="category-option" data-category="Angielski">
+					<input type="radio" name="category" value="4"> Angielski
+				</label>
+			</div>
+			<h2>Wybierz trudność</h2>
+			<div class="difficulties">
+				<label class="difficulty-option">
+					<input type="radio" name="difficulty" value="1"> Łatwy
+				</label>
+				<label class="difficulty-option">
+					<input type="radio" name="difficulty" value="2"> Średni
+				</label>
+				<label class="difficulty-option">
+					<input type="radio" name="difficulty" value="3"> Trudny
+				</label>
+			</div>
+			<button id="submit">Potwierdź</button>
+		</form>
     </div>
 </section>
 

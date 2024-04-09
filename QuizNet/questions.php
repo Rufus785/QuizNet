@@ -17,7 +17,7 @@
 
         $expectedRowCount = 10;
 
-        if ($row['row_count'] == $expectedRowCount) {
+        if ($row['row_count'] > $expectedRowCount) {
             $sql = "SELECT * FROM questions WHERE level_id = '{$_POST['difficulty']}' AND subject_id = '{$_POST['category']}'";
             $result = $mysqli -> query($sql);
             $row = $result -> fetch_all(MYSQLI_ASSOC);
@@ -31,7 +31,7 @@
                     $random_row[] = $randomElement;
                 }
             }
-    
+
             shuffle($random_row);
     
             for ($i = 0; $i < 10; $i++) {
