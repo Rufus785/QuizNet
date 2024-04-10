@@ -30,8 +30,7 @@ if($result->num_rows < 10){
 	$brakuje = 10 - $result->num_rows;
 	echo '<p style="color:red">BRAKUJE '.$brakuje.' PYTAŃ!<p>';
 }
-echo '<button onclick="Show(\'latwy\');">Pokaż</button><div id="latwy" style="display: none">';
-
+echo '<button onclick="Show(\'latwy\');" id="button_latwy">Pokaż</button><div id="latwy" style="display: none">';
 if ($result->num_rows > 0) {
 	echo "<ol>";
 	while ($row = $result->fetch_assoc()) {
@@ -52,8 +51,7 @@ if($result->num_rows < 10){
 	$brakuje = 10 - $result->num_rows;
 	echo '<p style="color:red">BRAKUJE '.$brakuje.' PYTAŃ!<p>';
 }
-echo '<button onclick="Show(\'sredni\');">Pokaż</button><div id="sredni" style="display: none">';
-
+echo '<button onclick="Show(\'sredni\');" id="button_sredni">Pokaż</button><div id="sredni" style="display: none">';
 if ($result->num_rows > 0) {
 	echo "<ol>";
 	while ($row = $result->fetch_assoc()) {
@@ -75,8 +73,7 @@ if($result->num_rows < 10){
 	$brakuje = 10 - $result->num_rows;
 	echo '<p style="color:red">BRAKUJE '.$brakuje.' PYTAŃ!<p>';
 }
-echo '<button onclick="Show(\'trudny\');">Pokaż</button><div id="trudny" style="display: none">';
-
+echo '<button onclick="Show(\'trudny\');" id="button_trudny">Pokaż</button><div id="trudny" style="display: none">';
 if ($result->num_rows > 0) {
 	echo "<ol>";
 	while ($row = $result->fetch_assoc()) {
