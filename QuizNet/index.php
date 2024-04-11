@@ -119,35 +119,46 @@ include("config.php");
 <section class="quiz-selection">
     <div class="container">
         <h2>Wybierz kategorię</h2>
-        <div class="categories">
-            <label class="category-option" data-category="Matematyka">
-                <input type="radio" name="category" value="Matematyka"> Matematyka
-            </label>
-            <label class="category-option" data-category="Polski">
-                <input type="radio" name="category" value="Polski"> Polski
-            </label>
-            <label class="category-option" data-category="Fizyka">
-                <input type="radio" name="category" value="Fizyka"> Fizyka
-            </label>
-            <label class="category-option" data-category="Angielski">
-                <input type="radio" name="category" value="Angielski"> Angielski
-            </label>
-        </div>
+		<form action="test.php" method="POST">
+
+<?php
+
+$sql = "SELECT id, name FROM subjects";
+$result = $mysqli->query($sql);
+
+if ($result->num_rows > 0){
+	echo '<div class="categories"> <input type="hidden" id="category_id" name="category_id" value="">';
+	while ($row = $result->fetch_assoc()){
+        echo'    <label class="category-option" data-category="'.$row['name'].'">
+                <input type="radio" name="category" value="'.$row['name'].'" onclick="setCategoryId('.$row['id'].')"> '.$row['name'].'
+            </label>';
+	}
+	echo '</div>';
+}else{
+	echo 'Brak kategorii, musisz poczekać.';
+}
+
+?>
+
+</section>
+
+
+        
         <h2>Wybierz trudność</h2>
         <div class="difficulties">
             <label class="difficulty-option">
-                <input type="radio" name="difficulty" value="Łatwy"> Łatwy
+                <input type="radio" name="difficulty" value="0"> Łatwy
             </label>
             <label class="difficulty-option">
-                <input type="radio" name="difficulty" value="Średni"> Średni
+                <input type="radio" name="difficulty" value="1"> Średni
             </label>
             <label class="difficulty-option">
-                <input type="radio" name="difficulty" value="Trudny"> Trudny
+                <input type="radio" name="difficulty" value="2"> Trudny
             </label>
         </div>
-        <button id="submit">Potwierdź</button>
+        <button id="submit" type="submit">Potwierdź</button>
+		</form>
     </div>
-</section>
 
 <footer>
     <p>&copy; 2024 Strona z quizami.</p>
@@ -155,6 +166,11 @@ include("config.php");
 </footer>	
 </body>
 <script src="./js/script-login.js"></script>
+<script>
+    function setCategoryId(id) {
+        document.getElementById('category_id').value = id;
+    }
+</script>
 </html>
 
 <?php
