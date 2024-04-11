@@ -16,8 +16,8 @@ if(isset($_POST['category_id'])){
 		shuffle($id_tab);
 		
 		$i = 1;
-		foreach ($id_tab as $value) {
-			$sql_tmp = "SELECT * FROM questions WHERE id = '{$value}'";
+		for ($j = 0; $j < 10; $j++) {
+			$sql_tmp = "SELECT * FROM questions WHERE id = '{$id_tab[$j]}'";
 			$result_tmp = $mysqli->query($sql_tmp);
 			$row_tmp = $result_tmp->fetch_assoc();
 
