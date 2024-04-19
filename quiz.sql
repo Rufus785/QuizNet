@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 09 Kwi 2024, 19:38
+-- Czas generowania: 19 Kwi 2024, 10:08
 -- Wersja serwera: 10.4.14-MariaDB
 -- Wersja PHP: 7.4.9
 
@@ -29,9 +29,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `answers` (
   `id` int(11) NOT NULL,
-  `answer` int(1) NOT NULL,
+  `answer` varchar(255) DEFAULT NULL,
   `attempt_id` int(11) NOT NULL,
-  `question_id` int(11) NOT NULL
+  `question_id` int(11) NOT NULL,
+  `was_hinted` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -45,7 +46,8 @@ CREATE TABLE `attempts` (
   `user_id` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
   `level` int(1) NOT NULL,
-  `date` date NOT NULL
+  `start_time` int(40) NOT NULL,
+  `end_time` int(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -178,13 +180,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT dla tabeli `answers`
 --
 ALTER TABLE `answers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=551;
 
 --
 -- AUTO_INCREMENT dla tabeli `attempts`
 --
 ALTER TABLE `attempts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT dla tabeli `questions`
@@ -196,7 +198,7 @@ ALTER TABLE `questions`
 -- AUTO_INCREMENT dla tabeli `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`
