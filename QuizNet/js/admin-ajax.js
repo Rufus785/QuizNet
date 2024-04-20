@@ -97,17 +97,17 @@ function change_question(id, subject_id) {
     "ajax/changequestion.php?id=" +
       id +
       "&nowe_pytanie=" +
-      nowe_pytanie +
+      encodeURIComponent(nowe_pytanie) +
       "&nowy_poziom=" +
-      nowy_poziom +
+      encodeURIComponent(nowy_poziom) +
       "&nowa_odpowiedz1=" +
-      nowa_odpowiedz1 +
+      encodeURIComponent(nowa_odpowiedz1) +
       "&nowa_odpowiedz2=" +
-      nowa_odpowiedz2 +
+      encodeURIComponent(nowa_odpowiedz2) +
       "&nowa_odpowiedz3=" +
-      nowa_odpowiedz3 +
+      encodeURIComponent(nowa_odpowiedz3) +
       "&nowa_odpowiedz4=" +
-      nowa_odpowiedz4
+      encodeURIComponent(nowa_odpowiedz4)
   );
   xhttp.send();
 }
@@ -134,19 +134,19 @@ function add_question() {
   xhttp.open(
     "GET",
     "ajax/addquestion.php?nowe_pytanie=" +
-      nowe_pytanie +
+      encodeURIComponent(nowe_pytanie) +
       "&nowy_poziom=" +
-      nowy_poziom +
+      encodeURIComponent(nowy_poziom) +
       "&nowa_odpowiedz1=" +
-      nowa_odpowiedz1 +
+      encodeURIComponent(nowa_odpowiedz1) +
       "&nowa_odpowiedz2=" +
-      nowa_odpowiedz2 +
+      encodeURIComponent(nowa_odpowiedz2) +
       "&nowa_odpowiedz3=" +
-      nowa_odpowiedz3 +
+      encodeURIComponent(nowa_odpowiedz3) +
       "&nowa_odpowiedz4=" +
-      nowa_odpowiedz4 +
+      encodeURIComponent(nowa_odpowiedz4) +
       "&subject=" +
-      subject
+      encodeURIComponent(subject)
   );
   xhttp.send();
 }
@@ -159,7 +159,10 @@ function add_subject() {
     document.getElementById("subject_add_info").innerHTML = this.responseText;
     show_subjects();
   };
-  xhttp.open("GET", "ajax/addsubject.php?value=" + nazwaNowejKategorii);
+  xhttp.open(
+    "GET",
+    "ajax/addsubject.php?value=" + encodeURIComponent(nazwaNowejKategorii)
+  );
   xhttp.send();
 }
 

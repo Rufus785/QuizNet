@@ -1,56 +1,71 @@
 body {
-    font-family: Arial, sans-serif; 
-    margin: 0; 
-    padding: 0; 
-    background-color: #f7f7f7; 
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7;
 }
 
 .content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 50px; /* Dodany margines górny */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
+  gap: 30px;
 }
 
 .quiz-container {
-    width: 50%;
-    padding: 20px;
-    background-color: #fff; 
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  width: 50%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-    margin-bottom: 20px; 
-    color: #333; 
+  margin-bottom: 20px;
+  color: #333;
 }
 
 .options {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .options label {
-    display: block;
-    margin-bottom: 10px;
-    color: #333; 
+  display: block;
+  margin-bottom: 10px;
+  color: #333;
 }
 
 .options input[type="radio"] {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
-button[type="submit"], .hint-button {
-    padding: 10px 20px;
-    background-color: #007bff; 
-    color: #fff; 
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease; 
+button[type="submit"],
+.hint-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-button[type="submit"]:hover, .hint-button:hover {
-    background-color: #0056b3;
+button[type="submit"]:hover,
+.hint-button:hover {
+  background-color: #0056b3;
+}
+.wyslij {
+  background-color: green;
+  color: white;
+  border: 1px solid white;
+  border-radius: 15px;
+  width: auto;
+  height: auto;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }

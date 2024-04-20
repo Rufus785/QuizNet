@@ -8,7 +8,7 @@ if(isset($_POST['category_id'])){
 	$sql = "SELECT * FROM questions WHERE subject_id = '{$_POST['category_id']}' AND level = '{$_POST['difficulty']}'";
 	$result = $mysqli->query($sql);
 	if ($result->num_rows >= 10){
-		echo '<form action="test.php" method="POST">';
+		echo '<form action="test.php" method="POST" class="content">';
 
 		//dodajemy informacje o podejsciu
 		$currentTime = time();
@@ -60,7 +60,7 @@ if(isset($_POST['category_id'])){
 			</div>
 			';
 		}
-		echo '<input type="hidden" name="attempt_id" value="'.$attempt_id.'"><input type="submit" name="wyslij" value="Wyślij">
+		echo '<input type="hidden" name="attempt_id" value="'.$attempt_id.'"><input type="submit" name="wyslij" value="Wyślij" class="wyslij">
 		</form>';
 	}else{
 		die('Niestety ten level nie jest jeszcze gotowy. <a href="index.php">Powrót</a>');

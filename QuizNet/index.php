@@ -23,7 +23,7 @@ include("config.php");
 		<div class="content">
         <?php 
 		
-		if($_SESSION['logged']){
+		if(isset($_SESSION['logged']) && $_SESSION['logged']){
 			
 			$sql = "SELECT * FROM users WHERE id = '{$_SESSION['user_id']}'";
 			$result = $mysqli -> query($sql);
@@ -71,7 +71,8 @@ include("config.php");
 				}
 			}
 			
-			echo '<p>Zaloguj się bądź zarejestruj</p>
+			echo '
+			<div class="content1">
 				<div class="login">
 				<img src="img/QuizNet.png" alt="Logo">
 					<h1>Logowanie</h1>
@@ -101,6 +102,7 @@ include("config.php");
 					</form>
 					<!-- Funkcja podmieniająca wyświetlaną zawartość -->
 					<p>Masz już konto? <a href="#" onclick="showLogin()">Zaloguj się!</a></p> 
+				</div>
 				</div>
 			';
 		}
@@ -144,7 +146,7 @@ if ($result->num_rows > 0){
 
 
         
-        <h2>Wybierz trudność</h2>
+        <h2 class="center">Wybierz trudność</h2>
         <div class="difficulties">
             <label class="difficulty-option">
                 <input type="radio" name="difficulty" value="0"> Łatwy
@@ -156,7 +158,9 @@ if ($result->num_rows > 0){
                 <input type="radio" name="difficulty" value="2"> Trudny
             </label>
         </div>
-        <button id="submit" type="submit">Potwierdź</button>
+		<div class="center1">
+        <button id="submit" type="submit" class="centerButton">Potwierdź</button>
+		</div>
 		</form>
     </div>
 
