@@ -44,16 +44,15 @@ include("config.php");
 						$sql = "INSERT INTO users (login, password) VALUES ('{$_POST['reg_login']}', '".$pass."')";
 						
 						if ($mysqli -> query($sql)) {
-							echo '<p>Pomyślnie zarejestrowano! Możesz się zalogować.</p>';
-						}else{
-							echo '<p>Błąd dodania:</p>';
+							echo '<script>alert("Pomyślnie zarejestrowano! Możesz się zalogować.");</script>';						}else{
+							echo '<script>alert("Błąd dodania")</script>';
 							echo $mysqli -> error;
 						}
 					}else{
-						echo '<p>Istnieje już użytkownik z takim loginem</p>';
+						echo '<script>alert("Istnieje już użytkownik z takim loginem");</script>';
 					}
 				}else{
-					echo '<p>Hasła nie są takie same!</p>';
+					echo '<script>alert("Hasła nie są takie same!");</script>';
 				}
 			}
 			
@@ -67,7 +66,7 @@ include("config.php");
 					$_SESSION['user_id'] = $row['id'];
 					header("Location: index.php");
 				}else{
-					echo '<p>Błędny login lub hasło!</p>';
+					echo '<script>alert("Błędny login lub hasło!");</script>';
 				}
 			}
 			
@@ -77,22 +76,20 @@ include("config.php");
 				<img src="img/QuizNet.png" alt="Logo">
 					<h1>Logowanie</h1>
 					<p>Podaj login oraz hasło</p>
-					<form action="login.php" method="POST">
+					<form action="index.php" method="POST">
 					<input type="text" class="login-label" name="login" placeholder="Login">
 					<input type="password" class="password-label" name="password" placeholder="Hasło">
 					<div class="confirm-button">
 					<button class="confirm" type="submit">Zaloguj</button>
 					</div>
 					</form>
-					<!-- Funkcja podmieniająca wyświetlaną zawartość -->
 					<p>Nie masz konta? <a href="#" onclick="showRegistration()">Zarejestruj się!</a></p> 
 				</div>
-				<!-- //Div odpowiedzialny za widocznośc rejestracji -->
 				<div class="registration"> 
 					<img src="img/QuizNet.png" alt="Logo">
 				<h1>Rejestracja</h1>
 					<p>Podaj login oraz hasło</p>
-					<form action="login.php" method="POST">
+					<form action="index.php" method="POST">
 					<input type="text" class="login-label" name="reg_login" placeholder="Login">
 					<input type="password" class="password-label" name="reg_pass" placeholder="Hasło">
 					<input type="password" class="password-confirm-label" name="reg_pass2" placeholder="Potwierdź hasło">
@@ -100,7 +97,6 @@ include("config.php");
 						<button class="confirm" type="submit">Zarejestruj</button>
 					</div>
 					</form>
-					<!-- Funkcja podmieniająca wyświetlaną zawartość -->
 					<p>Masz już konto? <a href="#" onclick="showLogin()">Zaloguj się!</a></p> 
 				</div>
 				</div>
