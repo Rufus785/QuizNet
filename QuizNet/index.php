@@ -127,7 +127,7 @@ $result = $mysqli->query($sql);
 if ($result->num_rows > 0){
 	echo '<div class="categories"> <input type="hidden" id="category_id" name="category_id" value="">';
 	while ($row = $result->fetch_assoc()){
-        echo'    <label class="category-option" data-category="'.$row['name'].'">
+        echo'<label id="levels" class="category-option" data-category="'.$row['name'].'">
                 <input type="radio" name="category" value="'.$row['name'].'" onclick="setCategoryId('.$row['id'].')"> '.$row['name'].'
             </label>';
 	}
@@ -138,39 +138,24 @@ if ($result->num_rows > 0){
 
 ?>
 
-</section>
-
-
-        
         <h2 class="center">Wybierz trudność</h2>
-        <div class="difficulties">
-            <label class="difficulty-option">
-                <input type="radio" name="difficulty" value="0"> Łatwy
-            </label>
-            <label class="difficulty-option">
-                <input type="radio" name="difficulty" value="1"> Średni
-            </label>
-            <label class="difficulty-option">
-                <input type="radio" name="difficulty" value="2"> Trudny
-            </label>
+        <div class="difficulties" id="difficulties">
+
         </div>
 		<div class="center1">
         <button id="submit" type="submit" class="centerButton">Potwierdź</button>
 		</div>
 		</form>
     </div>
-
+</section>
 <footer>
     <p>&copy; 2024 Strona z quizami.</p>
 	<p>Mariusz Osiński, Jakub Kruczek, Stanisław Michalewski</p>
 </footer>	
 </body>
 <script src="./js/script-login.js"></script>
-<script>
-    function setCategoryId(id) {
-        document.getElementById('category_id').value = id;
-    }
-</script>
+<script src="./js/index-ajax.js"></script>
+
 </html>
 
 <?php
