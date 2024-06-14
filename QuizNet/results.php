@@ -29,7 +29,7 @@ if(!(isset($_SESSION['logged']) && $_SESSION['logged'])){
         </div>
 <body>
 
-<header>
+<header class="header">
     <h1>Twoje wyniki</h1>
 </header>
 
@@ -118,7 +118,7 @@ function getUsedHints($attempt_id, $mysqli) {
 }
 
 ?>
-
+    <link rel="stylesheet" href="./css/results.css">
 <footer>
     <p>&copy; 2024 Strona z quizami.</p>
 	<p>Mariusz Osiński, Jakub Kruczek, Stanisław Michalewski</p>

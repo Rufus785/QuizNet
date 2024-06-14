@@ -81,7 +81,7 @@ if(isset($_POST['category_id'])){
 	$sql = "UPDATE attempts SET end_time = $currentTime WHERE id = '{$_POST['attempt_id']}'";
 	$mysqli->query($sql);
 
-	echo 'Zakończono egzamin. Twój wynik znajdziesz w sekcji Wyniki';
+	echo 'Zakończono egzamin. Twój wynik znajdziesz w sekcji <a href="results.php">Wyniki</a>';
 }else{
 	header('Location: index.php');
 }

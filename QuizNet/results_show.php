@@ -1,5 +1,4 @@
 <?php
-
 include("config.php");
 
 if(!$_SESSION['logged']) die("Wypad");
@@ -63,9 +62,9 @@ if(isset($_POST['id'])){
             if (!$correct && $checked) {
                 $icon = '&#10006;';
             }
-        
+            $class = $correct ? 'checked' : ($checked ? 'incorrect' : '');
             // Wyświetl odpowiedź z odpowiednim zaznaczeniem
-            echo '<label for="option'.$key.'_'.$row['question_id'].'">';
+            echo '<label class="'.$class.'" for="option'.$key.'_'.$row['question_id'].'">';
             echo '<input type="radio" id="option'.$key.'_'.$row['question_id'].'" name="answer'.$row['question_id'].'" value="'.$answer.'" '.$checked.' disabled>'.$answer.$icon;
             echo '</label><br>';
         }
@@ -74,23 +73,50 @@ if(isset($_POST['id'])){
         echo '<p>Podpowiedź użyta: '.($row['was_hinted'] ? 'Tak' : 'Nie').'</p>';
         echo '</div>';
     }
+    echo '<form action="results.php" method="post">';
+    echo '<input type="hidden" name="id" value="'.$attempt_id.'">';
+    echo '<button type="submit" class="back-button">Powrót</button>';
+    echo '</form>';
     echo '</div>';
+    
 } else {
     echo 'Nieprawidłowe zapytanie.';
 }
 
-?>
-
-<link rel="stylesheet" href="./css/questions.css">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script> 	
-<script src="js/hint.js"></script>
-
-<?php
-
 $mysqli->close();
-
 ?>
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/results_show.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script> 	
+    <script src="js/hint.js"></script>
+</head>
+<body>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const quizContainers = document.querySelectorAll('.quiz-container');
+
+    quizContainers.forEach(container => {
+        const correctAnswer = container.querySelector('input[type="radio"]:checked.checked');
+        const incorrectAnswer = container.querySelector('input[type="radio"]:checked.incorrect');
+
+        if (correctAnswer) {
+            container.classList.add('correct-container');
+        } else if (incorrectAnswer) {
+            container.classList.add('incorrect-container');
+        }
+    });
+});
+</script>
+
+</body>
+</html>
