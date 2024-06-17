@@ -1,0 +1,120 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+}
+
+.admin-panel-content {
+  background-color: #343a40;
+  height: auto;
+  min-height: 100vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.panel-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.panel {
+  width: 300px;
+  margin: 10px;
+}
+
+.panel-content {
+  color: white;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.category,
+.question {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.category:hover,
+.question:hover {
+  background-color: #0056b3;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.answers table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.answers th {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  color: white;
+}
+
+.answers td {
+  padding: 10px;
+  color: white;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button:hover {
+  background-color: #218838;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+#subject_list button,
+#subject_add button,
+#subject_edit button,
+#question_edit button {
+  background-color: #218838;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#subject_list button:hover,
+#subject_list button:hover,
+#subject_add button:hover,
+#subject_edit button:hover,
+#question_edit button:hover {
+  background-color: #3adb5d;
+}
+#question_edit table {
+  color: white;
+}

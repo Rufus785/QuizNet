@@ -1,0 +1,7 @@
+users:
+
+admin admin1
+user user1
+
+kategorie:
+Matematyka
